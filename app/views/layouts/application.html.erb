@@ -9,7 +9,39 @@
   </head>
 
   <body>
-    <p class="flash"><%= flash.notice %></p>
-    <%= yield %>
+    <p class="flash">
+      <%= flash.notice %>
+    </p>
+    <aside class="navbar">
+
+      <ul>
+        <h2>Navbar</h2>
+        <hr>
+        <h3>Articles</h3>
+        <% @links.each do |a| %>
+          <li><%= link_to a.title, a %></li>
+        <% end %>
+        <hr>
+        <h3>Tags</h3>
+        <% @list_tags.each do |t| %>
+          <li><%= link_to t.name, t %></li>
+        <% end %>
+      </ul>
+    </aside>
+
+    <div id="container">
+      <div id="content">
+        <%= yield %>
+        <hr>
+        <h6>
+          <% if logged_in? %>
+            <%= "Logged in as #{current_user.email}" %>
+            <%= link_to "(logout)", logout_path %>
+          <% else %>
+            <%= link_to "(login)", login_path %>
+          <% end %>
+        </h6>
+      </div>
+    </div>
   </body>
 </html>

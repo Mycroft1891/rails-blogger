@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
 
+  before_action :require_login, except: [:index, :show]
+
   include ArticlesHelper
 
   def index
@@ -8,6 +10,11 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find_by(id: params[:id])
+    @article.increment!(:views)
+    @popular = Article.order(views: :desc).limit(3)
+    @comment = Comment.new
+    @comment.article_id = @article.id
+
   end
 
   def new

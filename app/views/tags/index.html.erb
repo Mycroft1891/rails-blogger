@@ -1,0 +1,6 @@
+<h1>Browse Articles by Tag</h1>
+<ul>
+  <% @tag.each do |tag| %>
+    <li><%= link_to tag.name, tag %></li>
+  <% end %>
+</ul>

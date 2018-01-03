@@ -1,5 +1,7 @@
 <h1>Articles Index</h1>
-
+<%= link_to "Browse by Tag names =>", tags_path %>
+<hr>
+<br>
 <ul>
   <% @articles.each do |article| %>
     <li><%= link_to article.title, article %></li>
